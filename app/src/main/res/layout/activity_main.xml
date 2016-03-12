@@ -17,40 +17,74 @@
         android:id="@+id/textView_title"
         android:textSize="30sp" />
 
-    <!-- データ表示（仮）ボタン -->
+    <!-- データ表示（仮名）ボタン -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="データ表示"
         android:id="@+id/button_dispData"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
 
-    <!-- 入力金額表示部 -->
-    <LinearLayout
+	<!-- 収支切替ボタン -->
+	<RadioGroup
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp">
+
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="収入"
+			android:id="@+id/radioButton_income"/>
+
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="支出"
+			android:id="@+id/radioButton_expense"/>
+	</RadioGroup>
+
+	<!-- 入力金額表示部 -->
+	<LinearLayout
         android:orientation="horizontal"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+		>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="￥"
             android:id="@+id/textView"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+			android:layout_weight="2"
+			android:gravity="right"/>
 
-    </LinearLayout>
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="0"
+			android:id="@+id/textView_price"
+			android:textSize="25sp"
+			android:gravity="right"
+			android:singleLine="true"
+			android:maxLines="1"
+			android:layout_weight="3"/>
+
+	</LinearLayout>
 
 	<!-- 金額入力部 -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="300dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+		android:layout_marginTop="20dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <Button
@@ -81,9 +115,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+			android:layout_weight="1">
 
             <Button
                 android:layout_width="wrap_content"
@@ -113,7 +146,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <Button
