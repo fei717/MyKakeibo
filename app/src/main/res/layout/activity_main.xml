@@ -9,7 +9,6 @@
     tools:context="com.example.intenttest.MainActivity"
     android:orientation="vertical">
 
-
     <!-- アプリタイトル表示 -->
     <TextView
         android:layout_width="wrap_content"
