@@ -9,6 +9,7 @@
     tools:context="com.example.intenttest.MainActivity"
     android:orientation="vertical">
 
+    <!-- アプリタイトル表示 -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
         android:id="@+id/textView_title"
         android:textSize="30sp" />
 
+    <!-- データ表示（仮）ボタン -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,6 +25,7 @@
         android:id="@+id/button_dispData"
         android:layout_marginTop="10dp"/>
 
+    <!-- 入力金額表示部 -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="300dp"
@@ -38,6 +41,7 @@
 
     </LinearLayout>
 
+	<!-- 金額入力部 -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="300dp"
@@ -53,25 +57,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
-                android:id="@+id/button"/>
+                android:id="@+id/button_7"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
-                android:id="@+id/button2"/>
+                android:id="@+id/button_4"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/button3"/>
+                android:id="@+id/button_1"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:id="@+id/button4"/>
+                android:id="@+id/button_0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -85,25 +89,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
-                android:id="@+id/button5"/>
+                android:id="@+id/button_8"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
-                android:id="@+id/button6"/>
+                android:id="@+id/button_5"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/button7"/>
+                android:id="@+id/button_2"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00"
-                android:id="@+id/button8"/>
+                android:id="@+id/button_00"/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,25 +120,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9"
-                android:id="@+id/button9"/>
+                android:id="@+id/button_9"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
-                android:id="@+id/button10"/>
+                android:id="@+id/button_6"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/button11"/>
+                android:id="@+id/button_3"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="記録"
-                android:id="@+id/button12"/>
+                android:id="@+id/button_record"/>
         </LinearLayout>
     </LinearLayout>
 
