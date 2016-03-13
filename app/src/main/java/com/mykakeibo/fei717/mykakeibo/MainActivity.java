@@ -8,13 +8,52 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * 変数名 命名規則（暫定）
+ *
+ * st~	: String型
+ * i~	: int型
+ */
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+	TextView	tv_price;
+	String		stPrice;		// 入力金額保持用（記録ボタン押下後初期化
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		tv_price = (TextView) findViewById(R.id.textView_price);
+		stPrice = "0";
+
+		Button bt_0 = (Button) findViewById(R.id.button_0);
+		bt_0.setOnClickListener(this);
+		Button bt_00 = (Button) findViewById(R.id.button_00);
+		bt_00.setOnClickListener(this);
+		Button bt_1 = (Button) findViewById(R.id.button_1);
+		bt_1.setOnClickListener(this);
+		Button bt_2 = (Button) findViewById(R.id.button_2);
+		bt_2.setOnClickListener(this);
+		Button bt_3 = (Button) findViewById(R.id.button_3);
+		bt_3.setOnClickListener(this);
+		Button bt_4 = (Button) findViewById(R.id.button_4);
+		bt_4.setOnClickListener(this);
+		Button bt_5 = (Button) findViewById(R.id.button_5);
+		bt_5.setOnClickListener(this);
+		Button bt_6 = (Button) findViewById(R.id.button_6);
+		bt_6.setOnClickListener(this);
+		Button bt_7 = (Button) findViewById(R.id.button_7);
+		bt_7.setOnClickListener(this);
+		Button bt_8 = (Button) findViewById(R.id.button_8);
+		bt_8.setOnClickListener(this);
+		Button bt_9 = (Button) findViewById(R.id.button_9);
+		bt_9.setOnClickListener(this);
+		Button bt_rec = (Button) findViewById(R.id.button_rec);
+		bt_rec.setOnClickListener(this);
 	}
 
 	@Override
@@ -37,5 +76,42 @@ public class MainActivity extends AppCompatActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		Button bt = (Button)v;
+
+		switch(bt.getId()) {
+		// 入力ボタン判定
+		case R.id.button_1 :	// １～９
+		case R.id.button_2 :
+		case R.id.button_3 :
+		case R.id.button_4 :
+		case R.id.button_5 :
+		case R.id.button_6 :
+		case R.id.button_7 :
+		case R.id.button_8 :
+		case R.id.button_9 :
+			if(!(stPrice.equals("0"))) {						// 金額が入力済なら(not 0円)
+				stPrice = stPrice + bt.getText().toString();	// 　入力数値を追加
+			} else {											// 未入力なら(0円)
+				stPrice = bt.getText().toString();				// 　入力数値を設定
+			}
+			tv_price.setText(stPrice);	// 金額を表示
+			break;
+		case R.id.button_0 :
+		case R.id.button_00 :
+			if(!(stPrice.equals("0"))) {	// 入力金額が0じゃなかったら0or00を追加
+				stPrice = stPrice + bt.getText().toString();
+			}
+			tv_price.setText(stPrice);	// 金額を表示
+			break;
+		case R.id.button_rec :	// 記録
+//			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
+			stPrice = "0";				// 記録後、0円に設定
+			tv_price.setText(stPrice);	// 金額（０円）を表示
+			break;
+		}
 	}
 }
