@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 変数名 命名規則（暫定）
@@ -20,16 +22,20 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	TextView	tv_price;
+	RadioGroup	rg_inex;		// 収支切替ラジオボタン
 	String		stPrice;		// 入力金額保持用（記録ボタン押下後初期化
+	String		stSign;			// 収支（＋or―）
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// 金額表示用テキストボックス
 		tv_price = (TextView) findViewById(R.id.textView_price);
 		stPrice = "0";
 
+		// 入力ボタン
 		Button bt_0 = (Button) findViewById(R.id.button_0);
 		bt_0.setOnClickListener(this);
 		Button bt_00 = (Button) findViewById(R.id.button_00);
@@ -54,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		bt_9.setOnClickListener(this);
 		Button bt_rec = (Button) findViewById(R.id.button_rec);
 		bt_rec.setOnClickListener(this);
+
+		// 収支切替ボタン
+		rg_inex = (RadioGroup) findViewById(R.id.radioGroup_inex);
+//		rg_inex.
 	}
 
 	@Override
@@ -108,9 +118,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
 		case R.id.button_rec :	// 記録
-//			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
+			// 収支切替ボタン取得
+			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
+
+			// 収支ボタン判定
+			if(iIncomExpen == R.id.radioButton_income) {
+				stSign = "+";
+			} else {
+				stSign = "-";
+			}
+
+			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
 			stPrice = "0";				// 記録後、0円に設定
-			tv_price.setText(stPrice);	// 金額（０円）を表示
+			tv_price.setText(stPrice);	// 金額（0円）を表示
+			Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}
