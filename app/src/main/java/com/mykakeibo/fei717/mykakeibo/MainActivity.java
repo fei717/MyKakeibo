@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 /**
  * 変数名 命名規則（暫定）
  *
@@ -21,8 +23,9 @@ import android.widget.Toast;
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-	TextView	tv_price;
+	TextView	tv_price;		// 金額表示用
 	RadioGroup	rg_inex;		// 収支切替ラジオボタン
+	Calendar	calendar;		// 時間取得用
 	String		stPrice;		// 入力金額保持用（記録ボタン押下後初期化
 	String		stSign;			// 収支（＋or―）
 
@@ -63,7 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		// 収支切替ボタン
 		rg_inex = (RadioGroup) findViewById(R.id.radioGroup_inex);
-//		rg_inex.
+
+		// 時間取得
+		calendar = Calendar.getInstance();
 	}
 
 	@Override
@@ -122,16 +127,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
 
 			// 収支ボタン判定
-			if(iIncomExpen == R.id.radioButton_income) {
+			if(iIncomExpen == R.id.radioButton_income) {	// 収入ボタン
 				stSign = "+";
-			} else {
+			} else {										// 支出ボタン
 				stSign = "-";
 			}
 
+			// 記録処理
 			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
 			stPrice = "0";				// 記録後、0円に設定
 			tv_price.setText(stPrice);	// 金額（0円）を表示
-			Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
+
+			// テスト用
+//			Toast.makeText(this,
+//				calendar.get(Calendar.YEAR)+ "年"+ (calendar.get(Calendar.MONTH)+1)+ "月"+
+//					calendar.get(Calendar.DATE)+"日" ,
+//				Toast.LENGTH_SHORT).show();
+//			Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}
