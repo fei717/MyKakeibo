@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		stPrice = "0";
 
 		// 入力ボタン
+		// todo ボタン入力系も専用のメソッド作って↓を省略？
 		Button bt_0 = (Button) findViewById(R.id.button_0);
 		bt_0.setOnClickListener(this);
 		Button bt_00 = (Button) findViewById(R.id.button_00);
@@ -61,8 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		bt_8.setOnClickListener(this);
 		Button bt_9 = (Button) findViewById(R.id.button_9);
 		bt_9.setOnClickListener(this);
-		Button bt_rec = (Button) findViewById(R.id.button_rec);
-		bt_rec.setOnClickListener(this);
 
 		// 収支切替ボタン
 		rg_inex = (RadioGroup) findViewById(R.id.radioGroup_inex);
@@ -97,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	public void onClick(View v) {
 		Button bt = (Button)v;
 
-		switch(bt.getId()) {
 		// 入力ボタン判定
+		switch(bt.getId()) {
 		case R.id.button_1 :	// １～９
 		case R.id.button_2 :
 		case R.id.button_3 :
@@ -115,41 +114,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			}
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
-		case R.id.button_0 :
+		case R.id.button_0 :	// ０or００
 		case R.id.button_00 :
 			if(!(stPrice.equals("0"))) {	// 入力金額が0じゃなかったら0or00を追加
 				stPrice = stPrice + bt.getText().toString();
 			}
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
-		case R.id.button_rec :	// 記録
-			// 入力金額取得
-			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
+		}
+	}
 
-			if( iRecordPrice == 0){		// 未入力
-				Toast.makeText(this, "金額を入力して下さい", Toast.LENGTH_SHORT).show();
-			} else {
-				// 収支ボタン取得
-				int iIncomExpen = rg_inex.getCheckedRadioButtonId();
-				// 収支判定
-				if (iIncomExpen == R.id.radioButton_income) {    // 収入
-					stSign = "+";
-				} else {                                        // 支出
-					stSign = "-";
-				}
+	/**
+	 * 金額、収支データ記録
+	 * （「記録」ボタンが押下された際にコールされる）
+	 *
+	 * @param v
+	 */
+	public void addData(View v) {
+		int iRecordPrice = Integer.parseInt(stPrice);    // DBor内部ストレージ記録用
 
-				// 記録処理
-				stPrice = "0";                // 記録後、0円に設定
-				tv_price.setText(stPrice);    // 金額（0円）を表示
-
-				// テスト用（トースト：日付、金額） -> 出力ＯＫ！
-//				Toast.makeText(this,
-//					calendar.get(Calendar.YEAR)+ "年"+ (calendar.get(Calendar.MONTH)+1)+ "月"+
-//						calendar.get(Calendar.DATE)+"日"+ stSign + iRecordPrice+ "円" ,
-//					Toast.LENGTH_SHORT).show();
-//				Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
+		if (iRecordPrice == 0) {        // 未入力
+			Toast.makeText(this, "金額を入力して下さい", Toast.LENGTH_SHORT).show();
+		} else {
+			// 収支ボタン取得
+			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
+			// 収支判定
+			if (iIncomExpen == R.id.radioButton_income) {    // 収入
+				stSign = "+";
+			} else {                                        // 支出
+				stSign = "-";
 			}
-			break;
+			stPrice = "0";                // 記録後、0円に設定
+			tv_price.setText(stPrice);    // 金額（0円）を表示
+
+			// 記録処理
+			// todo DBへの記録
 		}
 	}
 }
