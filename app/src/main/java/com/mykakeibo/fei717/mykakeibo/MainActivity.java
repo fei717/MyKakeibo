@@ -123,27 +123,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
 		case R.id.button_rec :	// 記録
-			// 収支切替ボタン取得
-			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
-
-			// 収支ボタン判定
-			if(iIncomExpen == R.id.radioButton_income) {	// 収入ボタン
-				stSign = "+";
-			} else {										// 支出ボタン
-				stSign = "-";
-			}
-
-			// 記録処理
+			// 入力金額取得
 			int iRecordPrice = Integer.parseInt(stPrice);	// DBor内部ストレージ記録用
-			stPrice = "0";				// 記録後、0円に設定
-			tv_price.setText(stPrice);	// 金額（0円）を表示
 
-			// テスト用
-//			Toast.makeText(this,
-//				calendar.get(Calendar.YEAR)+ "年"+ (calendar.get(Calendar.MONTH)+1)+ "月"+
-//					calendar.get(Calendar.DATE)+"日" ,
-//				Toast.LENGTH_SHORT).show();
-//			Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
+			if( iRecordPrice == 0){		// 未入力
+				Toast.makeText(this, "金額を入力して下さい", Toast.LENGTH_SHORT).show();
+			} else {
+				// 収支ボタン取得
+				int iIncomExpen = rg_inex.getCheckedRadioButtonId();
+				// 収支判定
+				if (iIncomExpen == R.id.radioButton_income) {    // 収入
+					stSign = "+";
+				} else {                                        // 支出
+					stSign = "-";
+				}
+
+				// 記録処理
+				stPrice = "0";                // 記録後、0円に設定
+				tv_price.setText(stPrice);    // 金額（0円）を表示
+
+				// テスト用（トースト：日付、金額） -> 出力ＯＫ！
+//				Toast.makeText(this,
+//					calendar.get(Calendar.YEAR)+ "年"+ (calendar.get(Calendar.MONTH)+1)+ "月"+
+//						calendar.get(Calendar.DATE)+"日"+ stSign + iRecordPrice+ "円" ,
+//					Toast.LENGTH_SHORT).show();
+//				Toast.makeText(this, stSign+ iRecordPrice+ "円" , Toast.LENGTH_SHORT).show();
+			}
 			break;
 		}
 	}
