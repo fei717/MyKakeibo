@@ -139,9 +139,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			// 収支ボタン取得
 			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
 			// 収支判定
-			if (iIncomExpen == R.id.radioButton_income) {    // 収入
+			if (iIncomExpen == R.id.radioButton_income) {	// 収入
 				stSign = "+";
-			} else {                                        // 支出
+			} else {										// 支出
 				stSign = "-";
 			}
 			stPrice = "0";                // 記録後、0円に設定
