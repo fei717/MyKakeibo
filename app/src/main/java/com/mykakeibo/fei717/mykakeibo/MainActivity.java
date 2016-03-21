@@ -22,7 +22,7 @@ import java.util.Calendar;
  * i~	: int型
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 	TextView	tv_price;		// 金額表示用
 	RadioGroup	rg_inex;		// 収支切替ラジオボタン
 	Calendar	calendar;		// 時間取得用
@@ -37,31 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		// 金額表示用テキストボックス
 		tv_price = (TextView) findViewById(R.id.textView_price);
 		stPrice = "0";
-
-		// 入力ボタン
-		// todo ボタン入力系も専用のメソッド作って↓を省略？
-		Button bt_0 = (Button) findViewById(R.id.button_0);
-		bt_0.setOnClickListener(this);
-		Button bt_00 = (Button) findViewById(R.id.button_00);
-		bt_00.setOnClickListener(this);
-		Button bt_1 = (Button) findViewById(R.id.button_1);
-		bt_1.setOnClickListener(this);
-		Button bt_2 = (Button) findViewById(R.id.button_2);
-		bt_2.setOnClickListener(this);
-		Button bt_3 = (Button) findViewById(R.id.button_3);
-		bt_3.setOnClickListener(this);
-		Button bt_4 = (Button) findViewById(R.id.button_4);
-		bt_4.setOnClickListener(this);
-		Button bt_5 = (Button) findViewById(R.id.button_5);
-		bt_5.setOnClickListener(this);
-		Button bt_6 = (Button) findViewById(R.id.button_6);
-		bt_6.setOnClickListener(this);
-		Button bt_7 = (Button) findViewById(R.id.button_7);
-		bt_7.setOnClickListener(this);
-		Button bt_8 = (Button) findViewById(R.id.button_8);
-		bt_8.setOnClickListener(this);
-		Button bt_9 = (Button) findViewById(R.id.button_9);
-		bt_9.setOnClickListener(this);
 
 		// 収支切替ボタン
 		rg_inex = (RadioGroup) findViewById(R.id.radioGroup_inex);
@@ -92,8 +67,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onClick(View v) {
+	/**
+	 * 金額、収支データ記録
+	 * （「記録」ボタンが押下された際にコールされる）
+	 *
+	 * @param v
+	 */
+	public void addData(View v) {
+		int iRecordPrice = Integer.parseInt(stPrice);    // DBor内部ストレージ記録用
+
+		if (iRecordPrice == 0) {        // 未入力
+			Toast.makeText(this, "金額を入力して下さい", Toast.LENGTH_SHORT).show();
+		} else {
+			// 収支ボタン取得
+			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
+			// 収支判定
+			if (iIncomExpen == R.id.radioButton_income) {	// 収入
+				stSign = "+";
+			} else {										// 支出
+				stSign = "-";
+			}
+			stPrice = "0";                // 記録後、0円に設定
+			tv_price.setText(stPrice);    // 金額（0円）を表示
+
+			// 記録処理
+			// todo DBへの記録
+		}
+	}
+
+	/**
+	 * 数字ボタン押下時処理
+	 *
+	 * @param v
+	 */
+	public void addPrice(View v) {
 		Button bt = (Button)v;
 
 		// 入力ボタン判定
@@ -121,34 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			}
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
-		}
-	}
-
-	/**
-	 * 金額、収支データ記録
-	 * （「記録」ボタンが押下された際にコールされる）
-	 *
-	 * @param v
-	 */
-	public void addData(View v) {
-		int iRecordPrice = Integer.parseInt(stPrice);    // DBor内部ストレージ記録用
-
-		if (iRecordPrice == 0) {        // 未入力
-			Toast.makeText(this, "金額を入力して下さい", Toast.LENGTH_SHORT).show();
-		} else {
-			// 収支ボタン取得
-			int iIncomExpen = rg_inex.getCheckedRadioButtonId();
-			// 収支判定
-			if (iIncomExpen == R.id.radioButton_income) {	// 収入
-				stSign = "+";
-			} else {										// 支出
-				stSign = "-";
-			}
-			stPrice = "0";                // 記録後、0円に設定
-			tv_price.setText(stPrice);    // 金額（0円）を表示
-
-			// 記録処理
-			// todo DBへの記録
 		}
 	}
 }

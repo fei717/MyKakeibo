@@ -98,25 +98,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
-                android:id="@+id/button_7"/>
+                android:id="@+id/button_7"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
-                android:id="@+id/button_4"/>
+                android:id="@+id/button_4"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/button_1"/>
+                android:id="@+id/button_1"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:id="@+id/button_0"/>
+                android:id="@+id/button_0"
+				android:onClick="addPrice"/>
         </LinearLayout>
 
         <LinearLayout
@@ -129,25 +133,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
-                android:id="@+id/button_8"/>
+                android:id="@+id/button_8"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
-                android:id="@+id/button_5"/>
+                android:id="@+id/button_5"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/button_2"/>
+                android:id="@+id/button_2"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="00"
-                android:id="@+id/button_00"/>
+                android:id="@+id/button_00"
+				android:onClick="addPrice"/>
         </LinearLayout>
 
         <LinearLayout
@@ -160,19 +168,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9"
-                android:id="@+id/button_9"/>
+                android:id="@+id/button_9"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
-                android:id="@+id/button_6"/>
+                android:id="@+id/button_6"
+				android:onClick="addPrice"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/button_3"/>
+                android:id="@+id/button_3"
+				android:onClick="addPrice"/>
 
 			<Button
 				android:layout_width="wrap_content"
