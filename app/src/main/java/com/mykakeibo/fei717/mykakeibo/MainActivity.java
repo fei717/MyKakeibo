@@ -1,5 +1,7 @@
 package com.mykakeibo.fei717.mykakeibo;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -87,11 +89,24 @@ public class MainActivity extends AppCompatActivity {
 			} else {										// 支出
 				stSign = "-";
 			}
-			stPrice = "0";                // 記録後、0円に設定
-			tv_price.setText(stPrice);    // 金額（0円）を表示
 
 			// 記録処理
 			// todo DBへの記録
+			SqliteDataBaseHelper helper = new SqliteDataBaseHelper(getApplicationContext(), "data.db"	, 1);
+			SQLiteDatabase db;
+			db = helper.getWritableDatabase();
+
+			ContentValues values = new ContentValues();
+			values.put(SqliteDataBaseHelper.DB_COLUMN_DATE, "2016-03-22");	// 日付
+			values.put(SqliteDataBaseHelper.DB_COLUMN_SIGN, "+");			// 収支
+			values.put(SqliteDataBaseHelper.DB_COLUMN_PRICE, 200);			// 金額
+			db.insert(SqliteDataBaseHelper.DB_TABLE, null, values);
+
+			db.close();
+
+			// リセット処理
+			stPrice = "0";                // 記録後、0円に設定
+			tv_price.setText(stPrice);    // 金額（0円）を表示
 		}
 	}
 
