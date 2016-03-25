@@ -1,6 +1,7 @@
 package com.mykakeibo.fei717.mykakeibo;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -97,9 +98,12 @@ public class MainActivity extends AppCompatActivity {
 			db = helper.getWritableDatabase();
 
 			ContentValues values = new ContentValues();
-			values.put(SqliteDataBaseHelper.DB_COLUMN_DATE, "2016-03-22");	// 日付
-			values.put(SqliteDataBaseHelper.DB_COLUMN_SIGN, "+");			// 収支
-			values.put(SqliteDataBaseHelper.DB_COLUMN_PRICE, 200);			// 金額
+			values.put(SqliteDataBaseHelper.DB_COLUMN_DATE,						// 日付
+				calendar.get(calendar.YEAR)+ "-"+
+				(calendar.get(calendar.MONTH)+1)+ "-"+
+				calendar.get(calendar.DATE));
+			values.put(SqliteDataBaseHelper.DB_COLUMN_SIGN, stSign);			// 収支
+			values.put(SqliteDataBaseHelper.DB_COLUMN_PRICE, iRecordPrice);		// 金額
 			db.insert(SqliteDataBaseHelper.DB_TABLE, null, values);
 
 			db.close();
@@ -144,5 +148,16 @@ public class MainActivity extends AppCompatActivity {
 			tv_price.setText(stPrice);	// 金額を表示
 			break;
 		}
+	}
+
+	/**
+	 * データ表示ボタン押下時処理（データ表示画面に遷移）
+	 *
+	 * @param v
+	 */
+	public void movDispData(View v) {
+		Intent intent = new Intent();
+		intent.setClassName(getPackageName(), getPackageName()+ ".DispDataActivity");
+		startActivity(intent);
 	}
 }

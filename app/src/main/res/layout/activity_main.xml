@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:text="データ表示"
         android:id="@+id/button_dispData"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+		android:onClick="movDispData"/>
 
 	<!-- 収支切替ボタン -->
 	<RadioGroup
